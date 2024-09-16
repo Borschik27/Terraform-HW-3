@@ -390,3 +390,173 @@ sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03
 
 ![image](https://github.com/user-attachments/assets/5cd4a99b-20b3-4a23-86de-1a161facf80b)
 
+
+Задание 3
+
+```
+terraform apply -auto-approve
+data.yandex_compute_image.my_image: Reading...
+yandex_vpc_network.develop: Refreshing state... [id=enpkojo6jvahg1nc2bg1]
+data.yandex_compute_image.my_image: Read complete after 1s [id=fd892vjp5gajiqr0g1b3]
+yandex_vpc_subnet.develop: Refreshing state... [id=e9b87c414metl4op1uaa]
+yandex_vpc_security_group.example: Refreshing state... [id=enp2lllhvmq5sr2arrkp]
+yandex_compute_instance.db["main"]: Refreshing state... [id=fhmnik7jplpn05k2oq5m]
+yandex_compute_instance.db["replica"]: Refreshing state... [id=fhm68h094ul1uud6d0d9]
+yandex_compute_instance.web[0]: Refreshing state... [id=fhm79bubeb0ja4l21i6h]
+yandex_compute_instance.web[1]: Refreshing state... [id=fhmjko0urc8gt60sqqvl]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following
+symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # yandex_compute_disk.data_disks[0] will be created
+  + resource "yandex_compute_disk" "data_disks" {
+      + block_size  = 4096
+      + created_at  = (known after apply)
+      + folder_id   = "b1gs98og2f2h12cvb2pj"
+      + id          = (known after apply)
+      + name        = "data-disk-0"
+      + product_ids = (known after apply)
+      + size        = 1
+      + status      = (known after apply)
+      + type        = "network-ssd"
+      + zone        = "ru-central1-a"
+
+      + disk_placement_policy (known after apply)
+    }
+
+  # yandex_compute_disk.data_disks[1] will be created
+  + resource "yandex_compute_disk" "data_disks" {
+      + block_size  = 4096
+      + created_at  = (known after apply)
+      + folder_id   = "b1gs98og2f2h12cvb2pj"
+      + id          = (known after apply)
+      + name        = "data-disk-1"
+      + product_ids = (known after apply)
+      + size        = 1
+      + status      = (known after apply)
+      + type        = "network-ssd"
+      + zone        = "ru-central1-a"
+
+      + disk_placement_policy (known after apply)
+    }
+
+  # yandex_compute_disk.data_disks[2] will be created
+  + resource "yandex_compute_disk" "data_disks" {
+      + block_size  = 4096
+      + created_at  = (known after apply)
+      + folder_id   = "b1gs98og2f2h12cvb2pj"
+      + id          = (known after apply)
+      + name        = "data-disk-2"
+      + product_ids = (known after apply)
+      + size        = 1
+      + status      = (known after apply)
+      + type        = "network-ssd"
+      + zone        = "ru-central1-a"
+
+      + disk_placement_policy (known after apply)
+    }
+
+  # yandex_compute_instance.storage will be created
+  + resource "yandex_compute_instance" "storage" {
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + maintenance_grace_period  = (known after apply)
+      + maintenance_policy        = (known after apply)
+      + metadata                  = {
+          + "ssh-keys" = "
+      + name                      = "storage"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v3"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+....
+      + scheduling_policy (known after apply)
+
+      + secondary_disk {
+          + auto_delete = false
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = "READ_WRITE"
+        }
+      + secondary_disk {
+          + auto_delete = false
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = "READ_WRITE"
+        }
+      + secondary_disk {
+          + auto_delete = false
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = "READ_WRITE"
+        }
+    }
+
+Plan: 4 to add, 0 to change, 0 to destroy.
+yandex_compute_disk.data_disks[1]: Creating...
+yandex_compute_disk.data_disks[2]: Creating...
+yandex_compute_disk.data_disks[0]: Creating...
+yandex_compute_disk.data_disks[0]: Creation complete after 9s [id=fhmlqj2befbpjk5ih22u]
+yandex_compute_disk.data_disks[2]: Still creating... [10s elapsed]
+yandex_compute_disk.data_disks[1]: Still creating... [10s elapsed]
+yandex_compute_disk.data_disks[2]: Creation complete after 11s [id=fhma6m1csasi6q05vcl9]
+yandex_compute_disk.data_disks[1]: Creation complete after 11s [id=fhmnpecakdm6ue4cr0ra]
+yandex_compute_instance.storage: Creating...
+yandex_compute_instance.storage: Still creating... [10s elapsed]
+yandex_compute_instance.storage: Still creating... [20s elapsed]
+yandex_compute_instance.storage: Still creating... [30s elapsed]
+yandex_compute_instance.storage: Still creating... [40s elapsed]
+yandex_compute_instance.storage: Creation complete after 40s [id=fhma6gg2fuqo3oepu0f9]
+
+Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$
+```
+
+```
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ yc compute instance list
++----------------------+---------+---------------+---------+----------------+-------------+
+|          ID          |  NAME   |    ZONE ID    | STATUS  |  EXTERNAL IP   | INTERNAL IP |
++----------------------+---------+---------------+---------+----------------+-------------+
+| fhm68h094ul1uud6d0d9 | replica | ru-central1-a | RUNNING | 89.169.152.121 | 10.1.1.14   |
+| fhm79bubeb0ja4l21i6h | web-1   | ru-central1-a | RUNNING | 62.84.119.128  | 10.1.1.33   |
+| fhma6gg2fuqo3oepu0f9 | storage | ru-central1-a | RUNNING | 84.201.131.92  | 10.1.1.12   |
+| fhmjko0urc8gt60sqqvl | web-2   | ru-central1-a | RUNNING | 62.84.127.196  | 10.1.1.18   |
+| fhmnik7jplpn05k2oq5m | main    | ru-central1-a | RUNNING | 89.169.140.244 | 10.1.1.35   |
++----------------------+---------+---------------+---------+----------------+-------------+
+
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ yc compute
+connect-to-serial-port  filesystem              image                   snapshot
+disk                    gpu-cluster             instance                snapshot-schedule
+disk-placement-group    host-group              instance-group          ssh
+disk-type               host-type               placement-group         zone
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ yc compute disk
+disk                  disk-placement-group  disk-type
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ yc compute disk
+add-access-binding     delete                 list-access-bindings   relocate               resize
+add-labels             get                    list-operations        remove-access-binding  set-access-bindings
+create                 list                   move                   remove-labels          update
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ yc compute disk list
++----------------------+-------------+-------------+---------------+--------+----------------------+-----------------+-------------+
+|          ID          |    NAME     |    SIZE     |     ZONE      | STATUS |     INSTANCE IDS     | PLACEMENT GROUP | DESCRIPTION |
++----------------------+-------------+-------------+---------------+--------+----------------------+-----------------+-------------+
+| fhm1mubktikrse6khi6j |             | 21474836480 | ru-central1-a | READY  | fhmjko0urc8gt60sqqvl |                 |             |
+| fhm8bgq6n5h680uiid7r |             |  5368709120 | ru-central1-a | READY  | fhma6gg2fuqo3oepu0f9 |                 |             |
+| fhma6m1csasi6q05vcl9 | data-disk-2 |  1073741824 | ru-central1-a | READY  | fhma6gg2fuqo3oepu0f9 |                 |             |
+| fhmfd8q0tr4keos2n68v |             | 32212254720 | ru-central1-a | READY  | fhm68h094ul1uud6d0d9 |                 |             |
+| fhmk50l43a1f27il68q9 |             | 21474836480 | ru-central1-a | READY  | fhm79bubeb0ja4l21i6h |                 |             |
+| fhmlqj2befbpjk5ih22u | data-disk-0 |  1073741824 | ru-central1-a | READY  | fhma6gg2fuqo3oepu0f9 |                 |             |
+| fhmnpecakdm6ue4cr0ra | data-disk-1 |  1073741824 | ru-central1-a | READY  | fhma6gg2fuqo3oepu0f9 |                 |             |
+| fhmv0f1plboimouoe1d6 |             | 53687091200 | ru-central1-a | READY  | fhmnik7jplpn05k2oq5m |                 |             |
++----------------------+-------------+-------------+---------------+--------+----------------------+-----------------+-------------+
+
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$
+```
+
