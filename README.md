@@ -1419,5 +1419,3 @@ Sep 17 21:36:35 storage ntpd[15582]: Soliciting pool server 2001:1bb0:e000:1e::8
 Sep 17 21:36:36 storage ntpd[15582]: Soliciting pool server 185.125.190.57
 sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$
 ```
-
-Задача 7
