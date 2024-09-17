@@ -1,36 +1,36 @@
 webservers:
   hosts:
     web-1:
-      ansible_user: "ubuntu"
-      ansible_host: 89.169.137.214
+      ansible_user: "user_name"
+      ansible_host: 89.169.137.0
       ansible_port: 22
       ansible_connection: ssh
       fqdn: "web-1.ru-central1.internal"
     web-2:
-      ansible_user: "ubuntu"
-      ansible_host: 89.169.147.136
+      ansible_user: "user_name"
+      ansible_host: 89.169.147.0
       ansible_port: 22
       ansible_connection: ssh
       fqdn: "web-2.ru-central1.internal"
 databases:
   hosts:
     main:
-      ansible_user: "ubuntu"
-      ansible_host: 62.84.125.49
+      ansible_user: "user_name"
+      ansible_host: 62.84.125.0
       ansible_port: 22
       ansible_connection: ssh
       fqdn: "main.ru-central1.internal"
     replica:
-      ansible_user: "ubuntu"
-      ansible_host: 51.250.91.194
+      ansible_user: "user_name"
+      ansible_host: 51.250.91.0
       ansible_port: 22
       ansible_connection: ssh
       fqdn: "replica.ru-central1.internal"
 storage:
   hosts:
     storage:
-      ansible_user: "ubuntu"
-      ansible_host: 51.250.6.242
+      ansible_user: "user_name_ex"
+      ansible_host: 51.250.6.0
       ansible_port: 22
       ansible_connection: ssh
       fqdn: "storage.ru-central1.internal"
