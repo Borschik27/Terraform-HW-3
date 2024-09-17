@@ -1,0 +1,46 @@
+---
+- name: Configure web servers
+  hosts: webservers
+  become: yes  
+  tasks:
+    - name: Ensure package is installed
+      ansible.builtin.apt:
+        update_cache: yes
+        name: "*"
+        state: latest
+    - name: Install required packages
+      ansible.builtin.apt:
+        name:
+          - nginx
+        state: present
+
+- name: Configure databases
+  hosts: databases
+  become: yes
+  tasks:
+    - name: Ensure package is installed
+      ansible.builtin.apt:
+        update_cache: yes
+        name: "*"
+        state: latest
+    - name: Install required packages
+      ansible.builtin.apt:
+        name:
+          - mysql-server
+        state: present
+
+- name: Configure storage
+  hosts: storage
+  become: yes
+  tasks:
+    - name: Ensure package is installed
+      ansible.builtin.apt:
+        update_cache: yes
+        name: "*"
+        state: latest
+
+    - name: Install required packages
+      ansible.builtin.apt:
+        name:
+          - ntp
+        state: present

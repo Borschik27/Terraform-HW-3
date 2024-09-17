@@ -1,0 +1,14 @@
+[webservers]
+%{ for vm in web_vms ~}
+${vm.name} ansible_host=${vm.internal_ip}
+%{ endfor ~}
+
+[databases]
+%{ for vm in db_vms ~}
+${vm.name} ansible_host=${vm.internal_ip}
+%{ endfor ~}
+
+[storage]
+%{ for vm in storage_vms ~}
+${vm.name} ansible_host=${vm.internal_ip}
+%{ endfor ~}
