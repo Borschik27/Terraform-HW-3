@@ -586,3 +586,40 @@ sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03
 "storage.ru-central1.internal"
 sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$
 ```
+
+Задача 5
+
+```
+You can apply this plan to save these new output values to the Terraform state, without changing any real
+infrastructure.
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+vm_list = [
+  [
+    {
+      "fqdn" = "main.ru-central1.internal"
+      "id" = "fhms151n3rrhrtl5bdri"
+      "name" = "main"
+    },
+    {
+      "fqdn" = "replica.ru-central1.internal"
+      "id" = "fhm0sbnju205g8d87dmj"
+      "name" = "replica"
+    },
+  ],
+  [
+    {
+      "fqdn" = "web-1.ru-central1.internal"
+      "id" = "fhmbhuj141a5a108rqil"
+      "name" = "web-1"
+    },
+    {
+      "fqdn" = "web-2.ru-central1.internal"
+      "id" = "fhmjcuj0vn2vper9a60d"
+      "name" = "web-2"
+    },
+  ],
+```
