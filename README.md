@@ -560,3 +560,29 @@ sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03
 sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$
 ```
 
+Задание 4 
+
+```
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ yc compute instance list
++----------------------+---------+---------------+---------+----------------+-------------+
+|          ID          |  NAME   |    ZONE ID    | STATUS  |  EXTERNAL IP   | INTERNAL IP |
++----------------------+---------+---------------+---------+----------------+-------------+
+| fhm0sbnju205g8d87dmj | replica | ru-central1-a | RUNNING | 51.250.75.65   | 10.1.1.13   |
+| fhmbhuj141a5a108rqil | web-1   | ru-central1-a | RUNNING | 89.169.128.21  | 10.1.1.20   |
+| fhmjcuj0vn2vper9a60d | web-2   | ru-central1-a | RUNNING | 89.169.151.200 | 10.1.1.5    |
+| fhms151n3rrhrtl5bdri | main    | ru-central1-a | RUNNING | 51.250.13.175  | 10.1.1.21   |
+| fhmt9cu1hss218vebt3j | storage | ru-central1-a | RUNNING | 84.201.130.64  | 10.1.1.8    |
++----------------------+---------+---------------+---------+----------------+-------------+
+
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ yc compute instance get fhm0sbnju205g8d87dmj --format=json | jq '.fqdn'
+"replica.ru-central1.internal"
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ yc compute instance get fhmbhuj141a5a108rqil --format=json | jq '.fqdn'
+"web-1.ru-central1.internal"
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ yc compute instance get fhmjcuj0vn2vper9a60d --format=json | jq '.fqdn'
+"web-2.ru-central1.internal"
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ yc compute instance get fhms151n3rrhrtl5bdri --format=json | jq '.fqdn'
+"main.ru-central1.internal"
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ yc compute instance get fhmt9cu1hss218vebt3j --format=json | jq '.fqdn'
+"storage.ru-central1.internal"
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$
+```
