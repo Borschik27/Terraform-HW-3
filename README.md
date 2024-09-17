@@ -623,3 +623,801 @@ vm_list = [
     },
   ],
 ```
+
+Задача 6
+
+```
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ terraform apply --auto-approve
+data.yandex_compute_image.my_image: Reading...
+data.yandex_compute_image.my_image: Read complete after 0s [id=fd892vjp5gajiqr0g1b3]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with
+the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # local_file.ansible_inventory will be created
+  + resource "local_file" "ansible_inventory" {
+      + content              = (known after apply)
+      + content_base64sha256 = (known after apply)
+      + content_base64sha512 = (known after apply)
+      + content_md5          = (known after apply)
+      + content_sha1         = (known after apply)
+      + content_sha256       = (known after apply)
+      + content_sha512       = (known after apply)
+      + directory_permission = "0777"
+      + file_permission      = "0777"
+      + filename             = "./inventory.yaml"
+      + id                   = (known after apply)
+    }
+
+  # null_resource.ansible_apply will be created
+  + resource "null_resource" "ansible_apply" {
+      + id = (known after apply)
+    }
+
+  # yandex_compute_disk.data_disks[0] will be created
+  + resource "yandex_compute_disk" "data_disks" {
+      + block_size  = 4096
+      + created_at  = (known after apply)
+      + folder_id   = "b1gs98og2f2h12cvb2pj"
+      + id          = (known after apply)
+      + name        = "data-disk-0"
+      + product_ids = (known after apply)
+      + size        = 1
+      + status      = (known after apply)
+      + type        = "network-ssd"
+      + zone        = "ru-central1-a"
+
+      + disk_placement_policy (known after apply)
+    }
+
+  # yandex_compute_disk.data_disks[1] will be created
+  + resource "yandex_compute_disk" "data_disks" {
+      + block_size  = 4096
+      + created_at  = (known after apply)
+      + folder_id   = "b1gs98og2f2h12cvb2pj"
+      + id          = (known after apply)
+      + name        = "data-disk-1"
+      + product_ids = (known after apply)
+      + size        = 1
+      + status      = (known after apply)
+      + type        = "network-ssd"
+      + zone        = "ru-central1-a"
+
+      + disk_placement_policy (known after apply)
+    }
+
+  # yandex_compute_disk.data_disks[2] will be created
+  + resource "yandex_compute_disk" "data_disks" {
+      + block_size  = 4096
+      + created_at  = (known after apply)
+      + folder_id   = "b1gs98og2f2h12cvb2pj"
+      + id          = (known after apply)
+      + name        = "data-disk-2"
+      + product_ids = (known after apply)
+      + size        = 1
+      + status      = (known after apply)
+      + type        = "network-ssd"
+      + zone        = "ru-central1-a"
+
+      + disk_placement_policy (known after apply)
+    }
+
+  # yandex_compute_instance.db["main"] will be created
+  + resource "yandex_compute_instance" "db" {
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = "main"
+      + id                        = (known after apply)
+      + maintenance_grace_period  = (known after apply)
+      + maintenance_policy        = (known after apply)
+      + metadata                  = {
+          + "serial-port-enable" = "1"
+          + "ssh-keys"           = "ubuntu:ssh-rsa 
+          + "user-data"          = <<-EOT
+                #cloud-config
+                runcmd:
+                  - echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+            EOT
+        }
+      + name                      = "main"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v3"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd892vjp5gajiqr0g1b3"
+              + name        = "main"
+              + size        = 50
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + metadata_options (known after apply)
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + placement_policy (known after apply)
+
+      + resources {
+          + core_fraction = 50
+          + cores         = 4
+          + memory        = 8
+        }
+
+      + scheduling_policy (known after apply)
+    }
+
+  # yandex_compute_instance.db["replica"] will be created
+  + resource "yandex_compute_instance" "db" {
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = "replica"
+      + id                        = (known after apply)
+      + maintenance_grace_period  = (known after apply)
+      + maintenance_policy        = (known after apply)
+      + metadata                  = {
+          + "serial-port-enable" = "1"
+          + "ssh-keys"           = "ubuntu:ssh-rsa 
+          + "user-data"          = <<-EOT
+                #cloud-config
+                runcmd:
+                  - echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+            EOT
+        }
+      + name                      = "replica"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v3"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd892vjp5gajiqr0g1b3"
+              + name        = "replica"
+              + size        = 30
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + metadata_options (known after apply)
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + placement_policy (known after apply)
+
+      + resources {
+          + core_fraction = 50
+          + cores         = 2
+          + memory        = 4
+        }
+
+      + scheduling_policy (known after apply)
+    }
+
+  # yandex_compute_instance.storage will be created
+  + resource "yandex_compute_instance" "storage" {
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = "storage"
+      + id                        = (known after apply)
+      + maintenance_grace_period  = (known after apply)
+      + maintenance_policy        = (known after apply)
+      + metadata                  = {
+          + "ssh-keys"  = "ubuntu:ssh-rsa 
+          + "user-data" = <<-EOT
+                #cloud-config
+                runcmd:
+                  - echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+            EOT
+        }
+      + name                      = "storage"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v3"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd892vjp5gajiqr0g1b3"
+              + name        = "storage"
+              + size        = (known after apply)
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + metadata_options (known after apply)
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + placement_policy (known after apply)
+
+      + resources {
+          + core_fraction = 20
+          + cores         = 2
+          + memory        = 2
+        }
+
+      + scheduling_policy (known after apply)
+
+      + secondary_disk {
+          + auto_delete = false
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = "READ_WRITE"
+        }
+      + secondary_disk {
+          + auto_delete = false
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = "READ_WRITE"
+        }
+      + secondary_disk {
+          + auto_delete = false
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = "READ_WRITE"
+        }
+    }
+
+  # yandex_compute_instance.web[0] will be created
+  + resource "yandex_compute_instance" "web" {
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = "web-1"
+      + id                        = (known after apply)
+      + maintenance_grace_period  = (known after apply)
+      + maintenance_policy        = (known after apply)
+      + metadata                  = {
+          + "serial-port-enable" = "1"
+          + "ssh-keys"           = "ubuntu:ssh-rsa 
+          + "user-data"          = <<-EOT
+                #cloud-config
+                runcmd:
+                  - echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+            EOT
+        }
+      + name                      = "web-1"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v3"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd892vjp5gajiqr0g1b3"
+              + name        = "web-1"
+              + size        = 20
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + metadata_options (known after apply)
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + placement_policy (known after apply)
+
+      + resources {
+          + core_fraction = 20
+          + cores         = 2
+          + memory        = 2
+        }
+
+      + scheduling_policy (known after apply)
+    }
+
+  # yandex_compute_instance.web[1] will be created
+  + resource "yandex_compute_instance" "web" {
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = "web-2"
+      + id                        = (known after apply)
+      + maintenance_grace_period  = (known after apply)
+      + maintenance_policy        = (known after apply)
+      + metadata                  = {
+          + "serial-port-enable" = "1"
+          + "ssh-keys"           = "ubuntu:ssh-rsa 
+          + "user-data"          = <<-EOT
+                #cloud-config
+                runcmd:
+                  - echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+            EOT
+        }
+      + name                      = "web-2"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v3"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd892vjp5gajiqr0g1b3"
+              + name        = "web-2"
+              + size        = 20
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + metadata_options (known after apply)
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + placement_policy (known after apply)
+
+      + resources {
+          + core_fraction = 20
+          + cores         = 2
+          + memory        = 2
+        }
+
+      + scheduling_policy (known after apply)
+    }
+
+  # yandex_vpc_network.develop will be created
+  + resource "yandex_vpc_network" "develop" {
+      + created_at                = (known after apply)
+      + default_security_group_id = (known after apply)
+      + folder_id                 = (known after apply)
+      + id                        = (known after apply)
+      + labels                    = (known after apply)
+      + name                      = "develop"
+      + subnet_ids                = (known after apply)
+    }
+
+  # yandex_vpc_security_group.example will be created
+  + resource "yandex_vpc_security_group" "example" {
+      + created_at = (known after apply)
+      + folder_id  = "b1gs98og2f2h12cvb2pj"
+      + id         = (known after apply)
+      + labels     = (known after apply)
+      + name       = "example_dynamic"
+      + network_id = (known after apply)
+      + status     = (known after apply)
+
+      + egress {
+          + description       = "разрешить весь исходящий трафик"
+          + from_port         = 0
+          + id                = (known after apply)
+          + labels            = (known after apply)
+          + port              = -1
+          + protocol          = "TCP"
+          + to_port           = 65365
+          + v4_cidr_blocks    = [
+              + "0.0.0.0/0",
+            ]
+          + v6_cidr_blocks    = []
+            # (2 unchanged attributes hidden)
+        }
+
+      + ingress {
+          + description       = "разрешить входящий  http"
+          + from_port         = -1
+          + id                = (known after apply)
+          + labels            = (known after apply)
+          + port              = 80
+          + protocol          = "TCP"
+          + to_port           = -1
+          + v4_cidr_blocks    = [
+              + "0.0.0.0/0",
+            ]
+          + v6_cidr_blocks    = []
+            # (2 unchanged attributes hidden)
+        }
+      + ingress {
+          + description       = "разрешить входящий https"
+          + from_port         = -1
+          + id                = (known after apply)
+          + labels            = (known after apply)
+          + port              = 443
+          + protocol          = "TCP"
+          + to_port           = -1
+          + v4_cidr_blocks    = [
+              + "0.0.0.0/0",
+            ]
+          + v6_cidr_blocks    = []
+            # (2 unchanged attributes hidden)
+        }
+      + ingress {
+          + description       = "разрешить входящий ssh"
+          + from_port         = -1
+          + id                = (known after apply)
+          + labels            = (known after apply)
+          + port              = 22
+          + protocol          = "TCP"
+          + to_port           = -1
+          + v4_cidr_blocks    = [
+              + "0.0.0.0/0",
+            ]
+          + v6_cidr_blocks    = []
+            # (2 unchanged attributes hidden)
+        }
+    }
+
+  # yandex_vpc_subnet.develop will be created
+  + resource "yandex_vpc_subnet" "develop" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "develop"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "10.1.1.0/24",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-a"
+    }
+
+Plan: 13 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + vm_list = [
+      + [
+          + {
+              + fqdn = (known after apply)
+              + id   = (known after apply)
+              + name = "main"
+            },
+          + {
+              + fqdn = (known after apply)
+              + id   = (known after apply)
+              + name = "replica"
+            },
+        ],
+      + [
+          + {
+              + fqdn = (known after apply)
+              + id   = (known after apply)
+              + name = "web-1"
+            },
+          + {
+              + fqdn = (known after apply)
+              + id   = (known after apply)
+              + name = "web-2"
+            },
+        ],
+    ]
+yandex_vpc_network.develop: Creating...
+yandex_compute_disk.data_disks[1]: Creating...
+yandex_compute_disk.data_disks[0]: Creating...
+yandex_compute_disk.data_disks[2]: Creating...
+yandex_vpc_network.develop: Creation complete after 3s [id=enpin2nopi2cjn3vran4]
+yandex_vpc_subnet.develop: Creating...
+yandex_vpc_security_group.example: Creating...
+yandex_vpc_subnet.develop: Creation complete after 1s [id=e9bimlvmfv8fvt6o14f4]
+yandex_vpc_security_group.example: Creation complete after 2s [id=enphjnec9gl1bn1v28ec]
+yandex_compute_instance.db["replica"]: Creating...
+yandex_compute_instance.db["main"]: Creating...
+yandex_compute_disk.data_disks[1]: Creation complete after 10s [id=fhm51ftq6uel3f50ec9j]
+yandex_compute_disk.data_disks[0]: Creation complete after 10s [id=fhmkht68c7ps61eo9kni]
+yandex_compute_disk.data_disks[2]: Creation complete after 10s [id=fhmk6th5pmrsc6g6oeho]
+yandex_compute_instance.db["replica"]: Still creating... [10s elapsed]
+yandex_compute_instance.db["main"]: Still creating... [10s elapsed]
+yandex_compute_instance.db["replica"]: Creation complete after 44s [id=fhmhg3pa2kreh2lbi3eh]
+yandex_compute_instance.db["main"]: Creation complete after 54s [id=fhmabars6qdpreb2jn1n]
+yandex_compute_instance.web[1]: Creating...
+yandex_compute_instance.web[0]: Creating...
+yandex_compute_instance.web[0]: Still creating... [10s elapsed]
+yandex_compute_instance.web[1]: Still creating... [10s elapsed]
+yandex_compute_instance.web[1]: Creation complete after 45s [id=fhmb5rs5ghkj8bbfpoor]
+yandex_compute_instance.web[0]: Creation complete after 58s [id=fhm5gjfj2rr7i5j6dqhq]
+yandex_compute_instance.storage: Creating...
+yandex_compute_instance.storage: Still creating... [10s elapsed]
+yandex_compute_instance.storage: Creation complete after 37s [id=fhmbrs2mo6d1s62rcor6]
+local_file.ansible_inventory: Creating...
+local_file.ansible_inventory: Creation complete after 0s [id=28728aee3bcb6f2e0a0842230e4d0de9c0e22eda]
+null_resource.ansible_apply: Creating...
+null_resource.ansible_apply: Provisioning with 'local-exec'...
+null_resource.ansible_apply (local-exec): Executing: ["/bin/sh" "-c" "      ansible-playbook -i ./inventory.yaml playbook.yml\n"]
+null_resource.ansible_apply (local-exec): [WARNING]: Found both group and host with same name: storage
+
+null_resource.ansible_apply (local-exec): PLAY [Configure web servers] ***************************************************
+
+null_resource.ansible_apply (local-exec): TASK [Gathering Facts] *********************************************************
+null_resource.ansible_apply (local-exec): ok: [web-2]
+null_resource.ansible_apply (local-exec): ok: [web-1]
+
+null_resource.ansible_apply (local-exec): TASK [Ensure package is installed] *********************************************
+null_resource.ansible_apply: Still creating... [10s elapsed]
+null_resource.ansible_apply: Still creating... [20s elapsed]
+null_resource.ansible_apply: Still creating... [30s elapsed]
+null_resource.ansible_apply: Still creating... [40s elapsed]
+null_resource.ansible_apply: Still creating... [50s elapsed]
+null_resource.ansible_apply: Still creating... [1m0s elapsed]
+null_resource.ansible_apply: Still creating... [1m10s elapsed]
+null_resource.ansible_apply: Still creating... [1m20s elapsed]
+null_resource.ansible_apply: Still creating... [1m30s elapsed]
+null_resource.ansible_apply: Still creating... [1m40s elapsed]
+null_resource.ansible_apply: Still creating... [1m50s elapsed]
+null_resource.ansible_apply: Still creating... [2m0s elapsed]
+null_resource.ansible_apply: Still creating... [2m10s elapsed]
+null_resource.ansible_apply: Still creating... [2m20s elapsed]
+null_resource.ansible_apply (local-exec): changed: [web-1]
+null_resource.ansible_apply (local-exec): changed: [web-2]
+
+null_resource.ansible_apply (local-exec): TASK [Install required packages] ***********************************************
+null_resource.ansible_apply: Still creating... [2m30s elapsed]
+null_resource.ansible_apply (local-exec): changed: [web-1]
+null_resource.ansible_apply (local-exec): changed: [web-2]
+
+null_resource.ansible_apply (local-exec): PLAY [Configure databases] *****************************************************
+
+null_resource.ansible_apply (local-exec): TASK [Gathering Facts] *********************************************************
+null_resource.ansible_apply (local-exec): ok: [main]
+null_resource.ansible_apply (local-exec): ok: [replica]
+
+null_resource.ansible_apply (local-exec): TASK [Ensure package is installed] *********************************************
+null_resource.ansible_apply: Still creating... [2m40s elapsed]
+null_resource.ansible_apply: Still creating... [2m50s elapsed]
+null_resource.ansible_apply: Still creating... [3m0s elapsed]
+null_resource.ansible_apply: Still creating... [3m10s elapsed]
+null_resource.ansible_apply: Still creating... [3m20s elapsed]
+null_resource.ansible_apply: Still creating... [3m30s elapsed]
+null_resource.ansible_apply: Still creating... [3m40s elapsed]
+null_resource.ansible_apply: Still creating... [3m50s elapsed]
+null_resource.ansible_apply: Still creating... [4m0s elapsed]
+null_resource.ansible_apply: Still creating... [4m10s elapsed]
+null_resource.ansible_apply: Still creating... [4m20s elapsed]
+null_resource.ansible_apply: Still creating... [4m30s elapsed]
+null_resource.ansible_apply: Still creating... [4m40s elapsed]
+null_resource.ansible_apply (local-exec): changed: [replica]
+null_resource.ansible_apply (local-exec): changed: [main]
+
+null_resource.ansible_apply (local-exec): TASK [Install required packages] ***********************************************
+null_resource.ansible_apply: Still creating... [4m50s elapsed]
+null_resource.ansible_apply: Still creating... [5m0s elapsed]
+null_resource.ansible_apply: Still creating... [5m10s elapsed]
+null_resource.ansible_apply: Still creating... [5m20s elapsed]
+null_resource.ansible_apply: Still creating... [5m30s elapsed]
+null_resource.ansible_apply: Still creating... [5m40s elapsed]
+null_resource.ansible_apply (local-exec): changed: [replica]
+null_resource.ansible_apply (local-exec): changed: [main]
+
+null_resource.ansible_apply (local-exec): PLAY [Configure storage] *******************************************************
+
+null_resource.ansible_apply (local-exec): TASK [Gathering Facts] *********************************************************
+null_resource.ansible_apply (local-exec): ok: [storage]
+
+null_resource.ansible_apply (local-exec): TASK [Ensure package is installed] *********************************************
+null_resource.ansible_apply: Still creating... [5m50s elapsed]
+null_resource.ansible_apply: Still creating... [6m0s elapsed]
+null_resource.ansible_apply: Still creating... [6m10s elapsed]
+null_resource.ansible_apply: Still creating... [6m20s elapsed]
+null_resource.ansible_apply: Still creating... [6m30s elapsed]
+null_resource.ansible_apply: Still creating... [6m40s elapsed]
+null_resource.ansible_apply: Still creating... [6m50s elapsed]
+null_resource.ansible_apply: Still creating... [7m0s elapsed]
+null_resource.ansible_apply: Still creating... [7m10s elapsed]
+null_resource.ansible_apply: Still creating... [7m20s elapsed]
+null_resource.ansible_apply: Still creating... [7m30s elapsed]
+null_resource.ansible_apply: Still creating... [7m40s elapsed]
+null_resource.ansible_apply: Still creating... [7m50s elapsed]
+null_resource.ansible_apply (local-exec): changed: [storage]
+
+null_resource.ansible_apply (local-exec): TASK [Install required packages] ***********************************************
+null_resource.ansible_apply: Still creating... [8m0s elapsed]
+null_resource.ansible_apply (local-exec): changed: [storage]
+
+null_resource.ansible_apply (local-exec): PLAY RECAP *********************************************************************
+null_resource.ansible_apply (local-exec): main                       : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+null_resource.ansible_apply (local-exec): replica                    : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+null_resource.ansible_apply (local-exec): storage                    : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+null_resource.ansible_apply (local-exec): web-1                      : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+null_resource.ansible_apply (local-exec): web-2                      : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+null_resource.ansible_apply: Creation complete after 8m6s [id=5075412649127897160]
+
+Apply complete! Resources: 13 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+vm_list = [
+  [
+    {
+      "fqdn" = "main.ru-central1.internal"
+      "id" = "fhmabars6qdpreb2jn1n"
+      "name" = "main"
+    },
+    {
+      "fqdn" = "replica.ru-central1.internal"
+      "id" = "fhmhg3pa2kreh2lbi3eh"
+      "name" = "replica"
+    },
+  ],
+  [
+    {
+      "fqdn" = "web-1.ru-central1.internal"
+      "id" = "fhm5gjfj2rr7i5j6dqhq"
+      "name" = "web-1"
+    },
+    {
+      "fqdn" = "web-2.ru-central1.internal"
+      "id" = "fhmb5rs5ghkj8bbfpoor"
+      "name" = "web-2"
+    },
+  ],
+]
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ yc compute instance list
++----------------------+---------+---------------+---------+----------------+-------------+
+|          ID          |  NAME   |    ZONE ID    | STATUS  |  EXTERNAL IP   | INTERNAL IP |
++----------------------+---------+---------------+---------+----------------+-------------+
+| fhm5gjfj2rr7i5j6dqhq | web-1   | ru-central1-a | RUNNING | 89.169.137.214 | 10.1.1.21   |
+| fhmabars6qdpreb2jn1n | main    | ru-central1-a | RUNNING | 62.84.125.49   | 10.1.1.23   |
+| fhmb5rs5ghkj8bbfpoor | web-2   | ru-central1-a | RUNNING | 89.169.147.136 | 10.1.1.37   |
+| fhmbrs2mo6d1s62rcor6 | storage | ru-central1-a | RUNNING | 51.250.6.242   | 10.1.1.31   |
+| fhmhg3pa2kreh2lbi3eh | replica | ru-central1-a | RUNNING | 51.250.91.194  | 10.1.1.22   |
++----------------------+---------+---------------+---------+----------------+-------------+
+
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ ssh ubuntu@89.169.137.214 "systemctl status nginx"
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2024-09-17 21:30:55 UTC; 9min ago
+       Docs: man:nginx(8)
+   Main PID: 15563 (nginx)
+      Tasks: 3 (limit: 2292)
+     Memory: 5.8M
+     CGroup: /system.slice/nginx.service
+             ├─15563 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+             ├─15564 nginx: worker process
+             └─15565 nginx: worker process
+
+Sep 17 21:30:55 web-1 systemd[1]: Starting A high performance web server and a reverse proxy server...
+Sep 17 21:30:55 web-1 systemd[1]: Started A high performance web server and a reverse proxy server.
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ ssh ubuntu@51.250.91.194 "systemctl status mysql"
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2024-09-17 21:33:58 UTC; 6min ago
+   Main PID: 15936 (mysqld)
+     Status: "Server is operational"
+      Tasks: 37 (limit: 4630)
+     Memory: 365.2M
+     CGroup: /system.slice/mysql.service
+             └─15936 /usr/sbin/mysqld
+
+Sep 17 21:33:56 replica systemd[1]: Starting MySQL Community Server...
+Sep 17 21:33:58 replica systemd[1]: Started MySQL Community Server.
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$ ssh ubuntu@51.250.6.242 "systemctl status ntp"
+● ntp.service - Network Time Service
+     Loaded: loaded (/lib/systemd/system/ntp.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2024-09-17 21:36:28 UTC; 4min 17s ago
+       Docs: man:ntpd(8)
+   Main PID: 15582 (ntpd)
+      Tasks: 2 (limit: 2292)
+     Memory: 1.4M
+     CGroup: /system.slice/ntp.service
+             └─15582 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -u 109:115
+
+Sep 17 21:36:32 storage ntpd[15582]: Soliciting pool server 188.225.9.167
+Sep 17 21:36:32 storage ntpd[15582]: Soliciting pool server 162.159.200.123
+Sep 17 21:36:33 storage ntpd[15582]: Soliciting pool server 85.21.78.23
+Sep 17 21:36:33 storage ntpd[15582]: Soliciting pool server 94.131.113.113
+Sep 17 21:36:33 storage ntpd[15582]: Soliciting pool server 185.125.190.58
+Sep 17 21:36:34 storage ntpd[15582]: Soliciting pool server 91.189.91.157
+Sep 17 21:36:34 storage ntpd[15582]: Soliciting pool server 213.33.141.134
+Sep 17 21:36:35 storage ntpd[15582]: Soliciting pool server 185.125.190.56
+Sep 17 21:36:35 storage ntpd[15582]: Soliciting pool server 2001:1bb0:e000:1e::85f
+Sep 17 21:36:36 storage ntpd[15582]: Soliciting pool server 185.125.190.57
+sypchik@Mirror:/mnt/c/Users/Sypchik/Desktop/home work/terraform/ter-homeworks/03/src$
+```
+
+Задача 7
