@@ -28,12 +28,6 @@ resource "yandex_compute_instance" "db" {
     metadata = {
         serial-port-enable = 1
         ssh-keys           = "${var.vm_user}:${var.vms_ssh_root_key}"
-
-        user-data = <<-EOF
-          #cloud-config
-          runcmd:
-            - echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          EOF
     }
 
     hostname   = each.value.vm_name
