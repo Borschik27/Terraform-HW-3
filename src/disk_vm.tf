@@ -37,12 +37,6 @@ resource "yandex_compute_instance" "storage" {
 
   metadata = {
     ssh-keys = "${var.vm_user}:${var.vms_ssh_root_key}"
-
-    user-data = <<-EOF
-      #cloud-config
-      runcmd:
-        - echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-    EOF
   }
 
   hostname   = var.stor_name
