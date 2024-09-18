@@ -29,12 +29,6 @@ resource "yandex_compute_instance" "web" {
   metadata = {
     serial-port-enable = 1
     ssh-keys           = "${var.vm_user}:${var.vms_ssh_root_key}"
-
-    user-data = <<-EOF
-      #cloud-config
-      runcmd:
-        - echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-    EOF
   }
   
   hostname   = "${var.web_name}-${count.index + 1}"
